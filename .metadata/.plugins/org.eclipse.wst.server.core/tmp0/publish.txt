@@ -1,0 +1,3 @@
+#Module publish data
+#Thu Mar 26 12:58:35 EET 2020
+org.eclipse.jst.jee.server\:/binary\:D\:\\School\\Software\ Development\\workspace1\\libraries\\EclipseLink\ 2.5.2\\eclipselink\\jlib\\jpa\\org.eclipse.persistence.jpars_2.5.2.v20140319-9ad6abd.jar=WEB-INF/lib/org.eclipse.persistence.jpars_2.5.2.v20140319-9ad6abd.jar
