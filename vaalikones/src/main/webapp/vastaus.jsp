@@ -18,7 +18,7 @@
 <body>
 
 <div id="container">
-<img id="headerimg" src="images/Logo.png" width="500" height="144" alt=""/>
+<img id="headerimg" src="Logo.png" width="500" height="144" alt=""/>
 
 
 
