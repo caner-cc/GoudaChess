@@ -10,6 +10,7 @@ import javax.persistence.*;
  */
 @Entity
 @Table(name="users")
+// Declare the mysql commands related to the users database what will be used somewhere in the program
 @NamedQueries({
 	@NamedQuery(name="User.findAll", query="SELECT u FROM User u"),
 	@NamedQuery(name="User.findByUsername", query="SELECT u FROM User u WHERE u.username = :username")

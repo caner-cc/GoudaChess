@@ -40,7 +40,8 @@ public class Login extends HttpServlet {
 		// TODO Auto-generated method stub
 		response.setContentType("text/plain");
 		response.setCharacterEncoding("UTF-8");
-
+		
+		// Change back the message to "none" after getting error message caused by authentication failure
 		request.getSession().setAttribute("message", "");
 		request.getRequestDispatcher("/login.jsp").forward(request, response);
 	}
@@ -51,7 +52,8 @@ public class Login extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
+		
+		// Establish connection with database
 		EntityManagerFactory emf = null;
 		EntityManager em = null;
 
@@ -63,17 +65,26 @@ public class Login extends HttpServlet {
 			return;
 		}
 
+		// Get the username and password given by the user
 		String username = request.getParameter("username");
-		System.out.println("username: " + username);
 		String password = request.getParameter("password");
-		System.out.println("password: " + password);
+
+		// Initialise a variable for error message
 		String message = "";
+		
+		
 		try {
-			
+			// Select the row from users table where the username given by the user can be found (if that's correct)
 			Query q = em.createQuery("SELECT u FROM User u WHERE u.username=\"" + username + "\"");
+			
+			// Get access to the setters getters from the Users class according to the row selected from the users table
 			User user = (User) q.getSingleResult();
-			System.out.println("user was: " + user);
+
+			// Apply the crypt function on password string (get the encrypted form of the password given by user) and compare it to the proper encrypted password from database
 			if(crypt(password).equals(user.getPassword())){
+				
+				// If the password was correct the user will be navigated to the CRUD page
+				// request.getRequestDispatcher("/URL_for_CRUD").forward(request, response);
 				response.getWriter().println("Login was successful");
 			}else { throw new Exception(); }
 			
@@ -83,7 +94,7 @@ public class Login extends HttpServlet {
 			e.printStackTrace(response.getWriter());
 			message = "Username or password is incorrect!";
 			request.getSession().setAttribute("message", message);
-			response.sendRedirect("login.jsp");
+			request.getRequestDispatcher("/login.jsp").forward(request, response);
 			return;
 
 		} finally {
@@ -98,9 +109,10 @@ public class Login extends HttpServlet {
 
 	}
 	
+	// Encryption function
 	public static String crypt(String str) {
         if (str == null || str.length() == 0) {
-            throw new IllegalArgumentException("String to encript cannot be null or zero length");
+            throw new IllegalArgumentException("String to encrypt cannot be null or zero length");
         }
 
         MessageDigest digester;
