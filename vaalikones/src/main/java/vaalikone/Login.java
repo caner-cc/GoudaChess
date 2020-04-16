@@ -14,6 +14,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.kohsuke.rngom.binary.TextPattern;
+
 import persist.User;
 
 /**
@@ -84,8 +86,8 @@ public class Login extends HttpServlet {
 			if(crypt(password).equals(user.getPassword())){
 				
 				// If the password was correct the user will be navigated to the CRUD page
-				// request.getRequestDispatcher("/URL_for_CRUD").forward(request, response);
-				response.getWriter().println("Login was successful");
+				//request.getRequestDispatcher("/testpack.ViewC").forward(request, response);
+				response.sendRedirect("ViewC");
 			}else { throw new Exception(); }
 			
 

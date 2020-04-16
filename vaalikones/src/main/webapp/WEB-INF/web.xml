@@ -28,6 +28,57 @@
     <url-pattern>/Login</url-pattern>
   </servlet-mapping>
   
+    <servlet>
+<servlet-name>ViewC</servlet-name>
+<servlet-class>testpack.ViewC</servlet-class>
+</servlet>
+
+<servlet-mapping>
+<servlet-name>ViewC</servlet-name>
+<url-pattern>/ViewC</url-pattern>
+</servlet-mapping>
+
+  <servlet>
+<servlet-name>DeleteC</servlet-name>
+<servlet-class>testpack.DeleteC</servlet-class>
+</servlet>
+
+<servlet-mapping>
+<servlet-name>DeleteC</servlet-name>
+<url-pattern>/DeleteC</url-pattern>
+</servlet-mapping>
+
+  <servlet>
+<servlet-name>EditC</servlet-name>
+<servlet-class>testpack.EditC</servlet-class>
+</servlet>
+
+<servlet-mapping>
+<servlet-name>EditC</servlet-name>
+<url-pattern>/EditC</url-pattern>
+</servlet-mapping>
+
+  <servlet>
+<servlet-name>EditC2</servlet-name>
+<servlet-class>testpack.EditC2</servlet-class>
+</servlet>
+
+<servlet-mapping>
+<servlet-name>EditC2</servlet-name>
+<url-pattern>/EditC2</url-pattern>
+</servlet-mapping>
+
+
+  <servlet>
+<servlet-name>SaveC</servlet-name>
+<servlet-class>testpack.SaveC</servlet-class>
+</servlet>
+
+<servlet-mapping>
+<servlet-name>SaveC</servlet-name>
+<url-pattern>/SaveC</url-pattern>
+</servlet-mapping>
+  
   <session-config>
     <session-timeout>30</session-timeout>
   </session-config>
