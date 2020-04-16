@@ -4,6 +4,5 @@ INDEX VERSION 1.4+E:\Share\Caner\HAMK server tools\GoudaChess\.metadata\.plugins
 2395914072.index
 3366501974.index
 2208442641.index
-1703485930.index
 1339937102.index
 1165874971.index
