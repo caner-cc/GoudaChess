@@ -23,7 +23,7 @@ DROP TABLE IF EXISTS `ehdokkaat`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `ehdokkaat` (
-  `EHDOKAS_ID` int(11) NOT NULL,
+  `EHDOKAS_ID` int(11) NOT NULL AUTO_INCREMENT,
   `SUKUNIMI` varchar(25) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `ETUNIMI` varchar(25) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `PUOLUE` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
