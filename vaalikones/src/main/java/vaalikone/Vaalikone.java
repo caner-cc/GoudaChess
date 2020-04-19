@@ -14,7 +14,6 @@ import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import javax.annotation.Resource;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -66,7 +65,7 @@ public class Vaalikone extends HttpServlet {
         //jos kÃ¤yttÃ¤jÃ¤-oliota ei lÃ¶ydy sessiosta, luodaan sinne sellainen
         if (usr == null) {
             usr = new Kayttaja();
-            logger.log(Level.FINE, "Luotu uusi käyttäjäolio");
+            logger.log(Level.FINE, "Luotu uusi kï¿½yttï¿½jï¿½olio");
             session.setAttribute("usrobj", usr);
         }
         EntityManagerFactory emf=null;

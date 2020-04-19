@@ -12,8 +12,9 @@ public class CandidateMethods {
 		}catch(Exception e){System.out.println(e);}
 		return con;
 	}
-	public static int save(Candidate e){
-		int status=0;
+	public static Map<String, String>  save(Candidate e){
+		Integer status=0;
+		String exception = "";
 		try{
 			Connection con=CandidateMethods.getConnection();
 			PreparedStatement ps=con.prepareStatement("insert into ehdokkaat(Sukunimi,Etunimi,Puolue,Kotipaikkakunta,Ika) values (?,?,?,?,?)");
@@ -24,12 +25,20 @@ public class CandidateMethods {
 			ps.setString(5,e.getIka());			
 			status=ps.executeUpdate();			
 			con.close();
-		}catch(Exception ex){ex.printStackTrace();}
+		}catch(Exception ex){
+			ex.printStackTrace();
+			exception = ex.getMessage();
+		}
 		
-		return status;
+		
+		Map<String, String> updateResult = new HashMap<String, String>();
+		updateResult.put("status", status.toString());
+		updateResult.put("exception", exception);
+		return updateResult;
 	}
-	public static int update(Candidate e){
-		int status=0;
+	public static Map<String, String> update(Candidate e){
+		Integer status=0;
+		String exception = "";
 		try{
 			Connection con=CandidateMethods.getConnection();
 			PreparedStatement ps=con.prepareStatement("update ehdokkaat set Sukunimi=?,Etunimi=?,Puolue=?,Kotipaikkakunta=?, Ika=? where ehdokas_id=?");
@@ -43,9 +52,15 @@ public class CandidateMethods {
 			status=ps.executeUpdate();
 			
 			con.close();
-		}catch(Exception ex){ex.printStackTrace();}
+		}catch(Exception ex){
+			ex.printStackTrace();
+			exception = ex.getMessage();
+		}
 		
-		return status;
+		Map<String, String> updateResult = new HashMap<String, String>();
+		updateResult.put("status", status.toString());
+		updateResult.put("exception", exception);
+		return updateResult;
 	}
 	public static int delete(int id){
 		int status=0;

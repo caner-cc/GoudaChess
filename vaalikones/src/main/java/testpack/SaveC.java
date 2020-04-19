@@ -3,6 +3,7 @@ package testpack;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -28,7 +29,10 @@ public class SaveC extends HttpServlet {
 		e.setKotipaikkakunta(Kotipaikkakunta);
 		e.setIka(Ika);
 		
-		int status=CandidateMethods.save(e);
+		Map<String, String> updateResult = CandidateMethods.save(e);
+		int status = Integer.parseInt(updateResult.get("status"));
+		String exception = updateResult.get("exception");
+
 		if(status>0){
 			out.print("<p>Record saved successfully!</p>");
 			out.print("<form action=\"ViewC\">\r\n" + 
@@ -37,7 +41,9 @@ public class SaveC extends HttpServlet {
 			request.getRequestDispatcher("/ViewC").include(request, response);
 			
 		}else{
-			out.println("Sorry! unable to save record");
+			out.println("Sorry! unable to save record:");
+			out.println("<br>");
+			out.println(exception);
 		}
 		
 		out.close();

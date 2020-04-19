@@ -92,8 +92,8 @@ public class Login extends HttpServlet {
 			
 
 		} catch (Exception e) {
-			
-			e.printStackTrace(response.getWriter());
+
+			e.printStackTrace();
 			message = "Username or password is incorrect!";
 			request.getSession().setAttribute("message", message);
 			request.getRequestDispatcher("/login.jsp").forward(request, response);
