@@ -28,4 +28,9 @@ public class ViewC extends HttpServlet {
 		
 		out.close();
 	}
+	
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String updateStatus = (String) request.getAttribute("updateStatus");
+		response.sendRedirect("ViewC");
+	}
 }

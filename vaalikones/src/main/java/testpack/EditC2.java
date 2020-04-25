@@ -3,6 +3,7 @@ package testpack;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -30,11 +31,17 @@ public class EditC2 extends HttpServlet {
 		e.setKotipaikkakunta(Kotipaikkakunta);
 		e.setIka(Ika);
 		
-		int status=CandidateMethods.update(e);
-		if(status>0){
+		CandidateMethods.update(e);
+		Map<String, String> updateResult = CandidateMethods.update(e);
+		int status = Integer.parseInt(updateResult.get("status"));
+		String exception = updateResult.get("exception");
+		
+		if(status > 0){
 			response.sendRedirect("ViewC");
 		}else{
-			out.println("Sorry! unable to update record");
+			out.println("Sorry! unable to update record:");
+			out.println("<br>");
+			out.println(exception);
 		}
 		
 		out.close();
