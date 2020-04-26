@@ -73,15 +73,14 @@ public class Login extends HttpServlet {
 
 		// Initialise a variable for error message
 		String message = "";
-		
+
 		
 		try {
 			// Select the row from users table where the username given by the user can be found (if that's correct)
-			Query q = em.createQuery("SELECT u FROM User u WHERE u.username=\"" + username + "\"");
-			
+			Query q = em.createQuery("SELECT u FROM User u WHERE u.username='" + username + "'");
+
 			// Get access to the setters getters from the Users class according to the row selected from the users table
 			User user = (User) q.getSingleResult();
-
 			// Apply the crypt function on password string (get the encrypted form of the password given by user) and compare it to the proper encrypted password from database
 			if(crypt(password).equals(user.getPassword())){
 				
