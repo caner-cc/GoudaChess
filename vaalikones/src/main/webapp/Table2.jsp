@@ -5,23 +5,44 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Insert title here</title>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+<link href="style.css" rel="stylesheet" type="text/css">
 </head>
 <body>
-
+<div id="container2">
 <h1>Add New Candidate</h1>
 <form action="SaveC" method="post">
-<table>
-<tr><td>Sukunimi:</td><td><input type="text" name="Sukunimi" required/></td></tr>
-<tr><td>Etunimi:</td><td><input type="text" name="Etunimi" required/></td></tr>
-<tr><td>Puolue:</td><td><input type="text" name="Puolue" required/></td></tr>
-<tr><td>Kotipaikkakunta:</td><td><input type="text" name="Kotipaikkakunta" required/></td></tr>
-<tr><td>Ika:</td><td><input type="text" name="Ika" required/></td></tr>
-<tr><td colspan="2"><input type="submit" value="Save Candidate"/></td></tr>
+<table class="table table-hover table-sm">
+<tr>
+	<td class="td-width2">Sukunimi:</td>
+	<td><input type="text" name="Sukunimi" required/></td>
+</tr>
+<tr>
+	<td class="td-width2">Etunimi:</td>
+	<td><input type="text" name="Etunimi" required/></td>
+</tr>
+<tr>
+	<td class="td-width2">Puolue:</td>
+	<td><input type="text" name="Puolue" required/></td>
+</tr>
+<tr>
+	<td class="td-width2">Kotipaikkakunta:</td>
+	<td><input type="text" name="Kotipaikkakunta" required/></td>
+</tr>
+<tr>
+	<td class="td-width2">Ika:</td>
+	<td><input type="text" name="Ika" required/></td>
+</tr>
 </table>
+	<td colspan="2"><input type="submit" value="Save Candidate"/></td>
+
+
 </form>
 
 <br/>
-<a href="ViewServlet">View Candidates</a>
-
+	<form action="/ViewC" method="get">
+		<input type='submit' name='ok' value='Back'/>
+	</form>
+</div>
 </body>
 </html>

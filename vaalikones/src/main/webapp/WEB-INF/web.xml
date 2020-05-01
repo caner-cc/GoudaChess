@@ -86,7 +86,7 @@
 			list if necessary) -->
 		<init-param>
 			<param-name>jersey.config.server.provider.packages</param-name>
-			<param-value>rest</param-value>
+			<param-value>rest, persist, dao</param-value>
 		</init-param>
 		<!-- This tells the server to load REST service when the server starts -->
 		<load-on-startup>1</load-on-startup>
