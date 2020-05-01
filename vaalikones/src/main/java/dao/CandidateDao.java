@@ -27,8 +27,8 @@ public class CandidateDao {
 	 * The method called by this method saves the lists of answer lists 
 	 * given as parameter to the database 
 	 * @param v is the list of the multidimension array,
-	 *          which will be recieved from editC.jsp, 
-	 *          it's arrays contains the ehdokasId, kysymysId and the vastau
+	 *          which will be received from editC.jsp, 
+	 *          these arrays contain the ehdokasId, kysymysId and the vastaus
 	 */
 	public static void updateVastaukset(ArrayList<List<Integer>> v) {
 		CandidateMethods.updateV(v);
@@ -37,7 +37,7 @@ public class CandidateDao {
 	/**
 	 * 
 	 * The method called by this method saves the object given as parameter into the database
-	 * @param e is an Ehdokkaat object, what will be recieved from editC.jsp 
+	 * @param e is an Ehdokkaat object, what will be received from editC.jsp 
 	 */
 	public static void updateCandidate(Ehdokkaat e) {
 		CandidateMethods.update(e);	

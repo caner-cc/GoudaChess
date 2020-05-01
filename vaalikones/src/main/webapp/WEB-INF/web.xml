@@ -59,17 +59,6 @@
 	</servlet-mapping>
 
 	<servlet>
-		<servlet-name>EditC2</servlet-name>
-		<servlet-class>testpack.EditC2</servlet-class>
-	</servlet>
-
-	<servlet-mapping>
-		<servlet-name>EditC2</servlet-name>
-		<url-pattern>/EditC2</url-pattern>
-	</servlet-mapping>
-
-
-	<servlet>
 		<servlet-name>SaveC</servlet-name>
 		<servlet-class>testpack.SaveC</servlet-class>
 	</servlet>
