@@ -12,16 +12,6 @@ import testpack.CandidateMethods;
 
 public class CandidateDao {
 	
-	private static EntityManagerFactory emf;
-	static EntityManager em = getEM();
-	
-	public static EntityManager getEM() {
-		if (emf == null) {
-			emf = Persistence.createEntityManagerFactory("vaalikones");
-		}
-		return emf.createEntityManager();
-	}
-
 	/** 
 	 * 
 	 * The method called by this method saves the lists of answer lists 

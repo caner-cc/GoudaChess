@@ -57,6 +57,16 @@
 		<servlet-name>EditC</servlet-name>
 		<url-pattern>/EditC</url-pattern>
 	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>EditQ</servlet-name>
+		<servlet-class>testpack.EditQ</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>EditQ</servlet-name>
+		<url-pattern>/EditQ</url-pattern>
+	</servlet-mapping>
 
 	<servlet>
 		<servlet-name>SaveC</servlet-name>

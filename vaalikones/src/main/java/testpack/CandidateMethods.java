@@ -3,6 +3,7 @@ package testpack;
 import java.util.*;
 
 import persist.Ehdokkaat;
+import persist.Kysymykset;
 
 import java.sql.*;
 
@@ -19,11 +20,13 @@ public class CandidateMethods {
 		return con;
 	}
 
-		/**
-		 * This method records new candidates in the database, given by the user in Table2.jsp
-		 * @param e, this is an Ehdokkaat object what will be created in SaveC.java
-		 *           according to the data from the Table2.jsp
-		 */
+	/**
+	 * This method records new candidates in the database, given by the user in
+	 * Table2.jsp
+	 * 
+	 * @param e, this is an Ehdokkaat object what will be created in SaveC.java
+	 *           according to the data from the Table2.jsp
+	 */
 	public static Map<String, String> save(Ehdokkaat e) {
 		Integer status = 0;
 		String exception = "";
@@ -49,14 +52,16 @@ public class CandidateMethods {
 		return updateResult;
 	}
 
-		/**
-		 * This method records the changes in the database, given by the user in editC.jsp
-		 * @param e, this is an Ehdokkaat object, it will be replaced 
-		 * 			 in CandidateService.java with the new Ehdokkaat object, 
-		 * 			 what will be recieved from the editC.jsp
-		 */
+	/**
+	 * This method records the changes in the database, given by the user in
+	 * editC.jsp
+	 * 
+	 * @param e, this is an Ehdokkaat object, it will be replaced in
+	 *           CandidateService.java with the new Ehdokkaat object, what will be
+	 *           recieved from the editC.jsp
+	 */
 	public static Map<String, String> update(Ehdokkaat e) {
-			Integer status = 0;
+		Integer status = 0;
 		String exception = "";
 		try {
 			Connection con = CandidateMethods.getConnection();
@@ -84,32 +89,36 @@ public class CandidateMethods {
 		return updateResult;
 	}
 
-		/**
-		 * This method will update and insert into the database the answers given by the user in editC.jsp form,
-		 * according to the arraylist recieved
-	     * @param v, this is a multidimension array which contains ehdokkaasId, kysymysId, vastaus in it's arrays,
-		 *           what will be recieved from editC.jsp
-	     *           this method is called in the CandidateService.java
-		 */
+	/**
+	 * This method will update and insert into the database the answers given by the
+	 * user in editC.jsp form, according to the arraylist recieved
+	 * 
+	 * @param v, this is a multidimension array which contains ehdokkaasId,
+	 *           kysymysId, vastaus in it's arrays, what will be recieved from
+	 *           editC.jsp this method is called in the CandidateService.java
+	 */
 	public static Map<String, String> updateV(ArrayList<List<Integer>> values) {
 		Integer status = 0;
 		String exception = "";
 		try {
 			int ehdokas_id = values.get(0).get(0);
-			
+
 			Connection con = CandidateMethods.getConnection();
 			PreparedStatement ps1 = con.prepareStatement("delete from vastaukset where ehdokas_Id=?");
 			ps1.setInt(1, ehdokas_id);
 			status = ps1.executeUpdate();
 			System.out.println("Deleted all vastaukset for ehdokas_id " + String.valueOf(ehdokas_id));
-			
+
 			PreparedStatement ps2 = con.prepareStatement(
 					"insert into vastaukset(ehdokas_id, kysymys_id, vastaus, kommentti) values (?,?,?,?)");
+
 			for (int i = 0; i < values.size(); i++) {
+
 				int kysymys_id = values.get(i).get(1);
 				int vastaus = values.get(i).get(2);
-				String kommentti = "ehdokkaan " + String.valueOf(ehdokas_id) + " vastaus kysymykseen " + String.valueOf(kysymys_id); 
-				
+				String kommentti = "ehdokkaan " + String.valueOf(ehdokas_id) + " vastaus kysymykseen "
+						+ String.valueOf(kysymys_id);
+
 				ps2.setInt(1, ehdokas_id);
 				ps2.setInt(2, kysymys_id);
 				ps2.setInt(3, vastaus);
@@ -118,7 +127,7 @@ public class CandidateMethods {
 			}
 			try {
 				ps2.executeBatch();
-				System.out.println("successfully inserted into database");
+				System.out.println("Successfully inserted into database");
 				con.close();
 			} catch (Exception ex) {
 				con.close();
@@ -138,10 +147,52 @@ public class CandidateMethods {
 		return updateResult;
 	}
 
-		/**
-		 * 
-		 * @param id, this is the id of the candidate, that will be removed from the database
-		 */ 
+	public static Map<String, String> updateQ(List<Kysymykset> kysymykset) {
+		Integer status = 0;
+		String exception = "";
+
+		Connection con = CandidateMethods.getConnection();
+		PreparedStatement ps1;
+		try {
+			ps1 = con.prepareStatement("delete from kysymykset");
+			status = ps1.executeUpdate();
+			System.out.println("Deleted all questions!");
+			PreparedStatement ps2 = con.prepareStatement("insert into kysymykset(kysymys_id, kysymys) values (?,?)");
+
+			for (int i = 0; i < kysymykset.size(); i++) {
+				String kysymys = kysymykset.get(i).getKysymys();
+				int kysymysId = kysymykset.get(i).getKysymysId();
+				ps2.setInt(1, kysymysId);
+				ps2.setString(2, kysymys);
+				ps2.addBatch();
+			}
+
+			try {
+				ps2.executeBatch();
+				System.out.println("Successfully inserted questions into database");
+				con.close();
+			} catch (Exception ex) {
+				con.close();
+				ex.printStackTrace();
+				exception = ex.getMessage();
+			}
+
+		} catch (Exception ex) {
+			ex.printStackTrace();
+			exception = ex.getMessage();
+		}
+		Map<String, String> updateResult = new HashMap<String, String>();
+		updateResult.put("status", status.toString());
+		updateResult.put("exception", exception);
+		System.out.println(updateResult);
+		return updateResult;
+	}
+
+	/**
+	 * 
+	 * @param id, this is the id of the candidate, that will be removed from the
+	 *            database
+	 */
 	public static int delete(int id) {
 		int status = 0;
 		try {
@@ -158,11 +209,12 @@ public class CandidateMethods {
 		return status;
 	}
 
-		/**
-		 * 
-		 * Returns the proper candidate by the id given as parameter
-		 * @param id
-		 */
+	/**
+	 * 
+	 * Returns the proper candidate by the id given as parameter
+	 * 
+	 * @param id
+	 */
 	public static Ehdokkaat getCandidateById(int id) {
 		Ehdokkaat e = new Ehdokkaat();
 
@@ -187,10 +239,11 @@ public class CandidateMethods {
 		return e;
 	}
 
-		/**
-		 * This method is used to return list (id, name, party, city, age) of all the candidates 
-		 * can be found in database, this returned list is processed by ViewC.java
-		 */ 
+	/**
+	 * This method is used to return list (id, name, party, city, age) of all the
+	 * candidates can be found in database, this returned list is processed by
+	 * ViewC.java
+	 */
 	public static List<Ehdokkaat> getAllCandidates() {
 		List<Ehdokkaat> list = new ArrayList<Ehdokkaat>();
 

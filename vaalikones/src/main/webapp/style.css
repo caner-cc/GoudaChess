@@ -1,6 +1,10 @@
 @charset "UTF-8";
 /* CSS Document */
 
+p:focus {
+    background-color: white;
+}
+
 #container{
 	width: 800px;
 	float: none;

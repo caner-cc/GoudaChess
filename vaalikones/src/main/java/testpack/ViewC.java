@@ -14,7 +14,7 @@ import persist.Ehdokkaat;
 
 public class ViewC extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		response.setContentType("text/html");
+		response.setContentType("text/html; charset=UTF-8");
 		PrintWriter out=response.getWriter();
 		out.println("<head>\n" + 
 					"<link href='style.css' rel='stylesheet' type='text/css'>\n" + 
@@ -26,7 +26,7 @@ public class ViewC extends HttpServlet {
 					"<td><form style='padding-right: 30px;' action='Table2.jsp' method='get'>\n" + 
 				    "    <input type='submit' name='ok' value='Add new Candidate'/>\n" + 
 				    "</td></form>" + 
-				    "<td><form action='LINK_TO_MODIFY_QUESTIONS' method='get'>\n" + 
+				    "<td><form action='/EditQ' method='get'>\n" + 
 			    	"    <input type='submit' name='ok' value='Edit questions'/>\n" + 
 			    	"</td></form>" +
 			    	"</tr></table>");		
