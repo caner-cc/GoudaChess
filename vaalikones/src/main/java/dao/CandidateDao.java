@@ -3,10 +3,6 @@ package dao;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
-
 import persist.Ehdokkaat;
 import testpack.CandidateMethods;
 
@@ -14,8 +10,7 @@ public class CandidateDao {
 	
 	/** 
 	 * 
-	 * The method called by this method saves the lists of answer lists 
-	 * given as parameter to the database 
+	 * The method called by this method saves the lists of answer lists given as parameter to the database 
 	 * @param v is the list of the multidimension array,
 	 *          which will be received from editC.jsp, 
 	 *          these arrays contain the ehdokasId, kysymysId and the vastaus

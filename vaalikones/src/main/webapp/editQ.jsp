@@ -85,7 +85,7 @@
 			</table><br />
 			<table>
 				<tr>
-					<td><input type='button' name='ok' value='Edit &amp; Save' onclick='sendData();' /></td>
+					<td><input type='button' name='ok' value='Save edited questions' onclick='sendData();' /></td>
 					<td id='response'></td>
 				</tr>
 			</table>

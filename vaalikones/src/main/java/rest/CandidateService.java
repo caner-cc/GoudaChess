@@ -16,27 +16,27 @@ public class CandidateService {
 
 	/**
 	 *
-	 * @param v is a multidimension array which contains ehdokkaasId, kysymysId, vastaus in it's arrays, 
-	 * it will be recieved from the editC.jsp form as a JSON string
+	 * @param v 
+	 * 		  is a multidimension array which contains ehdokkaasId, kysymysId, vastaus in it's arrays, 
+	 *   	  which will be received from the editC.jsp form
 	 */
     @PUT
     @Path("/setV")
 	@Consumes(MediaType.APPLICATION_JSON)
 	public void putVastaukset(ArrayList<List<Integer>> v) {
-    	System.out.println("Hello from postVastaukset");
     	CandidateDao.updateVastaukset(v);
 	}
 
     /**
 	 *
-	 * @param ehdokkaat is an Ehdokkat object, 
-	 * it will be recieved from the editC.jsp form as a JSON string
+	 * @param ehdokkaat 
+	 * 		  is an Ehdokkaat object, 
+	 *    	  which will be received from the editC.jsp form
 	 */
     @PUT
     @Path("/setC")
 	@Consumes(MediaType.APPLICATION_JSON)
 	public void putCandidates(Ehdokkaat ehdokkaat) {
-    	System.out.println("Hello from postCandidates");
     	CandidateDao.updateCandidate(ehdokkaat);
 	}
 

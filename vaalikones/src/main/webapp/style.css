@@ -20,7 +20,7 @@ p:focus {
     font-family: Gotham, "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
-/* This style is used in files: ViewC.java, EditC.java, Table2.jsp */
+/* This style is used in files: ViewC.java, editC.jsp, Table2.jsp, editQ.jsp */
 #container2{
 	width: 80%;
 	float: none;

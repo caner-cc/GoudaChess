@@ -73,9 +73,13 @@ public class EditQ extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub		
+		
+		// Get question from form named 'newQuestion' from editQ.jsp
 		String kysymys = request.getParameter("question");
-		System.out.println("[EditQ: doPost] kysymys "+ kysymys);
-
+		
+		/* If the input field is not empty when 'Add new question' was clicked
+		 * the question will be forwarded by client to QuestionService to save it into database
+		 */
 		if(!"".equals(kysymys)){
 			String uri = "http://127.0.0.1:8080/rest/QuestionService/saveQ";
 			Kysymykset k = new Kysymykset(kysymys);
