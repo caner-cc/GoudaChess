@@ -157,10 +157,16 @@ public class CandidateMethods {
 		int status = 0;
 		try {
 			Connection con = CandidateMethods.getConnection();
+			// Remove candidate
 			PreparedStatement ps = con.prepareStatement("delete from ehdokkaat where ehdokas_id=?");
 			ps.setInt(1, id);
 			status = ps.executeUpdate();
 
+			// Remove all the answers for the removed candidate
+			PreparedStatement ps2 = con.prepareStatement("delete from vastaukset where ehdokas_id=?");
+			ps2.setInt(1, id);
+			status = ps2.executeUpdate();
+			
 			con.close();
 		} catch (Exception e) {
 			e.printStackTrace();

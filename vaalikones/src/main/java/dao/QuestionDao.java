@@ -8,6 +8,7 @@ import javax.persistence.Persistence;
 
 import persist.Ehdokkaat;
 import persist.Kysymykset;
+import persist.Vastaukset;
 import testpack.CandidateMethods;
 
 public class QuestionDao {
@@ -69,10 +70,27 @@ public class QuestionDao {
 			em.getTransaction().begin();
 			em.remove(k);
 			em.getTransaction().commit();
+			
+			System.out.println("Deleted question from KYSYMYKSET table");
+		}
+		else {
+			return false;
+		}
+		
+		List<Vastaukset> v = em.createQuery("SELECT v FROM Vastaukset v where kysymys_id='"+id+"'").getResultList();
+		if (v != null) {
+			for (int i = 0; i < v.size(); i++) {
+				em.getTransaction().begin();
+				em.remove(v.get(i));
+				em.getTransaction().commit();
+			}
 			em.close();
-			System.out.println("DELETE is committed");
+			System.out.println("Deleted question from VASTAUKSET table");
 			return true;
-		}else { return false; }
+		}
+		else {
+			return false;
+		}
 
 	}
 	

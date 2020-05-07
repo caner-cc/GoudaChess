@@ -77,6 +77,16 @@
 		<servlet-name>SaveC</servlet-name>
 		<url-pattern>/SaveC</url-pattern>
 	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>GenerateRandomVastaukset</servlet-name>
+		<servlet-class>testpack.GenerateRandomVastaukset</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>GenerateRandomVastaukset</servlet-name>
+		<url-pattern>/GenerateRandomVastaukset</url-pattern>
+	</servlet-mapping>
 
 	<servlet>
 		<servlet-name>jersey-servlet</servlet-name>

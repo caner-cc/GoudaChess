@@ -23,11 +23,13 @@
 
 
  <%
-            @SuppressWarnings("unchecked") 
-            List<Kysymykset> kysymykset = (List<Kysymykset>)request.getAttribute("kysymykset");
+            @SuppressWarnings("unchecked")
+ 			List<Kysymykset> kysymykset = (List<Kysymykset>)request.getAttribute("kysymykset");
+			List<Integer> idList = (List<Integer>)request.getAttribute("idList");
+			int kaikkiKysymys = idList.size();
             for (Kysymykset kysymys : kysymykset) { %>
             <div class="kysymys">
-                <%= kysymys.getKysymysId() %> / 19 <br>
+                <%= idList.indexOf(kysymys.getKysymysId())+1 %> / <%=kaikkiKysymys%> <br>
                 <%= kysymys.getKysymys() %>
                  </div>
                 <form action="Vaalikone" id="vastausformi">
