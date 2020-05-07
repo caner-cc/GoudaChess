@@ -6,6 +6,7 @@
 package vaalikone;
 
 import java.io.Serializable;
+import java.util.Comparator;
 
 /**
  *
@@ -13,7 +14,7 @@ import java.io.Serializable;
  * @param <E>
  * @param <F>
  */
-public class Tuple<E,F> implements Serializable{
+public class Tuple<E,F> implements Serializable, Comparator<Tuple<E,F>> {
 
     /**
      *
@@ -34,8 +35,14 @@ public class Tuple<E,F> implements Serializable{
 //    	//Do nothing....
 //    }
     public Tuple(E e, F f) {
-        this.ehdokasId=e;
-        this.pisteet=f;
+        this.ehdokasId = e;
+        this.pisteet = f;
     }
-    
+
+	@Override
+	public int compare(Tuple<E, F> arg0, Tuple<E, F> arg1) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+   
 }

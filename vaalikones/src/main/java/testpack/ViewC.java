@@ -18,21 +18,28 @@ public class ViewC extends HttpServlet {
 		PrintWriter out=response.getWriter();
 		out.println("<head>\n" + 
 					"<link href='style.css' rel='stylesheet' type='text/css'>\n" + 
-					"<link rel='stylesheet' href='https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css' integrity='sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh' crossorigin='anonymous'>" +
+					"<link rel='stylesheet' href='https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css' integrity='sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh' crossorigin='anonymous'>\n" +
+					"<script type='text/javascript' src='index.js' ></script>\n" +
 					"</head>");
 		out.println("<div id='container2'>");
-		out.println("<table><tr>" +
-					"<td><h1 style='padding-right: 30px;'>Candidates List</h1><td>" + 
-					"<td><form style='padding-right: 30px;' action='Table2.jsp' method='get'>\n" + 
-				    "    <input type='submit' name='ok' value='Add new Candidate'/>\n" + 
-				    "</td></form>" + 
+		out.println("<table style='width: 98%'><tr>" +
+					"<td><h1 style='margin-top: 5px;'>Candidates List</h1><td>" + 
+					"<td><form action='Table2.jsp' method='get'>\n" + 
+				    "    <input id='submitnappi' type='submit' name='ok' value='Add new Candidate'/>\n" + 
+				    "</form></td>" + 
 				    "<td><form action='/EditQ' method='get'>\n" + 
-			    	"    <input type='submit' name='ok' value='Edit questions'/>\n" + 
-			    	"</td></form>" +
+			    	"    <input id='submitnappi' type='submit' name='ok' value='Edit questions'/>\n" + 
+			    	"</form></td>" +
+				    "<td style='padding-right: 100px; padding-left: 20px;'>\n" + 
+			    	"    <input type='text' id='filter' onkeyup='candidateFilter()' placeholder='Search for names...'>\n" + 
+			    	"</td>" +
+				    "<td><form action='index.html' method='get'>\n" + 
+			    	"    <input id='submitnappi' type='submit' name='ok' value='Back to main'/>\n" + 
+			    	"</form></td>" +
 			    	"</tr></table>");		
 		List<Ehdokkaat> list=CandidateMethods.getAllCandidates();
 		
-		out.print("<table class='table table-hover'>");
+		out.print("<table class='table table-hover' id='myTable'>");
 		out.print("<tr><th>Id</th><th>Sukunimi</th><th>Etunimi</th><th>Puolue</th><th>Kotipaikkakunta</th><th>Ika</th><th>Edit</th><th>Delete</th></tr>");
 		for(Ehdokkaat e:list){
 			out.print("<tr><td>"+e.getEhdokasId()+"</td><td>"+e.getSukunimi()+"</td><td>"+e.getEtunimi()+"</td><td>"+e.getPuolue()+"</td><td>"+e.getKotipaikkakunta()+"</td><td>"+e.getIka()+"</td><td><a href='EditC?id="+e.getEhdokasId()+"'>edit</a></td><td><a href='DeleteC?id="+e.getEhdokasId()+"'>delete</a></td></tr>");

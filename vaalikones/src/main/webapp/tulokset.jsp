@@ -17,21 +17,22 @@
         <link href="style.css" rel="stylesheet" type="text/css">
     </head>
     <body>
-        <div id="container">
+        <div id="container2">
             <h1>Diginide kertoo sinulle, ketä pitää äänestää:</h1>
             <%
+            	List<Integer> ehdokasList = (List<Integer>) request.getAttribute("ehdokasList");
                 List<Ehdokkaat> parhaatEhdokkaat = (List<Ehdokkaat>) request.getAttribute("parasEhdokas");
                 List<Integer> kayttajanVastaukset = (List<Integer>) request.getAttribute("kayttajanVastaukset");
                 List<Vastaukset> parhaanEhdokkaanVastaukset = (List<Vastaukset>) request.getAttribute("parhaanEhdokkaanVastaukset");
                 List<Kysymykset> kaikkiKysymykset = (List<Kysymykset>) request.getAttribute("kaikkiKysymykset");
                 Double pisteet = (double) (Integer) request.getAttribute("pisteet");
-                Double prosentit = (double) Math.round(pisteet / (3 * 19) * 100);
+                Double prosentit = (double) Math.round(pisteet / (3 * kaikkiKysymykset.size()) * 100);
                 Integer jarjestysnumero = (Integer) request.getAttribute("jarjestysnumero");
 
                 if (jarjestysnumero > 0) {%>
             <a href="Vaalikone?func=haeEhdokas&numero=<%= jarjestysnumero - 1%>">Edellinen ehdokas</a>&nbsp; 
             <% }
-                if (jarjestysnumero < 18) {%>
+                if (jarjestysnumero < ehdokasList.size() - 1) {%>
             <a href="Vaalikone?func=haeEhdokas&numero=<%= jarjestysnumero + 1%>">Seuraavaksi paras ehdokas</a>
             <% }
 
@@ -59,7 +60,7 @@
             %>
             <b>Kysymys <%= i + 1%>: <%= kaikkiKysymykset.get(i).getKysymys()%></b><br>
             <ul>
-                <li>Sinun vastaus: <%= kayttajanVastaukset.get(i + 1).toString()%></li>
+                <li>Sinun vastaus: <%= kayttajanVastaukset.get(i).toString()%></li>
                 <li>Ehdokkaan vastaus: <%= parhaanEhdokkaanVastaukset.get(i).getVastaus()%></li>
                 <li>Ehdokkaan kommentti: <%= parhaanEhdokkaanVastaukset.get(i).getKommentti()%></li>
             </ul>

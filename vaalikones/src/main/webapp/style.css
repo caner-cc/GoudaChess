@@ -92,6 +92,7 @@ body {
 	font-style: normal;
 	font-size: large;
 }
+
 #vastausformi{
 	height: 100px;
 	width: 500px;
@@ -99,4 +100,11 @@ body {
 	margin-right: auto;
 	text-align: center;
 	}
+	
+#filter {
+  width: 100%; /* Full-width */
+  font-size: 16px; /* Increase font-size */
+  padding: 12px 20px 12px 10px; /* Add some padding */
+  border: 1px solid #ddd; /* Add a grey border */
+}
 	

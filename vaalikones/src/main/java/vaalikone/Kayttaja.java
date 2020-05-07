@@ -9,8 +9,6 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
-import java.util.List;
-import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
@@ -48,9 +46,12 @@ public class Kayttaja implements Serializable {
     public void taytaVastauksetJaPisteet() {
         //täytelläänhän listat valmiiksi
         for (int i = 0; i < Vaalikone.ehdokkaatSize; i++) {
-            this.vastaus.add(0);
             this.pisteet.add(new Tuple<>(0, 0));
         }
+        for (int i = 0; i < Vaalikone.kysymysSize; i++) {
+        	this.vastaus.add(0);
+        }
+        
     }
     /**
      *
@@ -77,11 +78,12 @@ public class Kayttaja implements Serializable {
     /**
      * Aseta pisteet tiettyyn ehdokkaaseen nähden
      *
+     * @param index
      * @param ehdokasId ehdokkaan id-numero
      * @param pisteet Arvo, mikä lisätään
      */
-    public void addPisteet(Integer ehdokasId, Integer pisteet) {
-        this.pisteet.set(ehdokasId, new Tuple<>(ehdokasId, pisteet));
+    public void addPisteet(Integer index, Integer ehdokasId, Integer pisteet) {
+        this.pisteet.set(index, new Tuple<>(ehdokasId, pisteet));
     }
 
     /**
@@ -118,23 +120,15 @@ public class Kayttaja implements Serializable {
          *  Javan Collections.sort oletuksena järjestää listat pienimmästä suurimpaan
          *  Collections.reverseOrder kääntää järjestyksen toisin päin
          */
-        //Collections.sort(this.pisteet, Collections.reverseOrder(comparator));
-        
-        this.pisteet.stream().forEach((tpl) -> {
-            logger.log(Level.INFO, "Ehdokas ID={0} pisteet={1}", new Object[]{tpl.ehdokasId, tpl.pisteet});
-        });
-
+        Collections.sort(this.pisteet, Collections.reverseOrder(new ComparePisteet()));
         return this.pisteet;
     }
 
-    //Tuplen järjestämiseen tarvittavan comparatorin muodostaminen
-    //lähde: http://stackoverflow.com/questions/5690537/sorting-a-tuple-based-on-one-of-the-fields
-    //Comparator<Tuple<Integer, Integer>> comparator = (Tuple<Integer, Integer> o1, Tuple<Integer, Integer> o2) -> o1.pisteet.compareTo(o2.pisteet);
-    transient Comparator<Tuple<Integer, Integer>> comparator = new Comparator<Tuple<Integer, Integer>>() {
-        @Override
+    static class ComparePisteet implements Comparator<Tuple<Integer, Integer>> {
+    	@Override
         public int compare(Tuple<Integer, Integer> o1, Tuple<Integer, Integer> o2) {
-            return o1.pisteet.compareTo(o2.pisteet);
-        }
+    		return o1.pisteet.compareTo(o2.pisteet);
+    	}
     };
 
 }
