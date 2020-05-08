@@ -34,9 +34,12 @@
 	<td><input type="text" name="Ika" required/></td>
 </tr>
 </table>
-	<td colspan="2"><input type="submit" value="Save Candidate"/></td>
-
-
+<table>
+	<tr>
+		<td><input type="submit" value="Save Candidate"/></td>
+		<td style="margin-left : 20px;">${success}</td>
+	</tr>
+</table>
 </form>
 
 <br/>

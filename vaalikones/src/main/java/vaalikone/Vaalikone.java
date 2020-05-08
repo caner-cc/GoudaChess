@@ -23,7 +23,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-
+import vaalikone.Kayttaja;
 import persist.Ehdokkaat;
 import persist.Kysymykset;
 import persist.Vastaukset;
@@ -155,9 +155,7 @@ public class Vaalikone extends HttpServlet {
             } else {
 
                 //Tyhjennetään piste-array jotta pisteet eivät tuplaannu mahdollisen refreshin tapahtuessa
-            	for (int i = 0; i < ehdokasList.size(); i++) {
-                    usr.pisteet.set(i, new Tuple<>(0, 0)); 
-                }
+            	Kayttaja.taytaVastauksetJaPisteet();
 
                 //iteroi ehdokaslista läpi
                 int ehdokas_id;

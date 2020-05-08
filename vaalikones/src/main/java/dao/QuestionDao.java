@@ -52,7 +52,6 @@ public class QuestionDao {
 		 * (this is why we need the mysql command above)
 		*/
 		CandidateMethods.saveDefaultV(k, e);
-		System.out.println("this is done");
 		
 		em.close();
 	}

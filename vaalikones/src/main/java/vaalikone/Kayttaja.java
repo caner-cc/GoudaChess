@@ -26,8 +26,8 @@ public class Kayttaja implements Serializable {
 	 */
 
 //	private final ArrayList<Integer> vastaus = new ArrayList<>(20);
-	private ArrayList<Integer> vastaus = new ArrayList<>();
-    ArrayList<Tuple<Integer, Integer>> pisteet = new ArrayList<>();
+	private static ArrayList<Integer> vastaus = new ArrayList<>();
+    private static ArrayList<Tuple<Integer, Integer>> pisteet = new ArrayList<>();
     private final static Logger logger = Logger.getLogger(Loki.class.getName());
 
     /**
@@ -43,13 +43,14 @@ public class Kayttaja implements Serializable {
 //
 //    }
 
-    public void taytaVastauksetJaPisteet() {
+    public static void taytaVastauksetJaPisteet() {
         //täytelläänhän listat valmiiksi
         for (int i = 0; i < Vaalikone.ehdokkaatSize; i++) {
-            this.pisteet.add(new Tuple<>(0, 0));
+            pisteet.add(new Tuple<>(0, 0));
         }
+        
         for (int i = 0; i < Vaalikone.kysymysSize; i++) {
-        	this.vastaus.add(0);
+        	vastaus.add(0);
         }
         
     }
