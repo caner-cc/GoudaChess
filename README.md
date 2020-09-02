@@ -2,7 +2,7 @@
 
 When you clone *Eszter-v2* branch, these are the quidelines to make the program work:
 
-### Fist of all, you will need the ***users* database**, to get it you can **run the commands from the attached *vaalikone.sql*** which is located in the *database* folder. 
+### First of all, you will need the ***users* database**, to get it you can **run the commands from the attached *vaalikone.sql*** which is located in the *database* folder. 
 Then you need to make further configurations in eclipse:
 
 ## I. Import the EclipseLink (again):
